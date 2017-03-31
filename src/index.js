@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
+import firebase from 'firebase';
 import LoginView from '@containers/login/loginview';
 
 const styles = {
@@ -22,6 +23,17 @@ const styles = {
     fontSize: 12,
   },
 };
+
+const config = {
+  apiKey: 'AIzaSyANwczZPwkIKh_keDD8qOZl5KpUWy1wWt4',
+  authDomain: 'chatapp-96733.firebaseapp.com',
+  databaseURL: 'https://chatapp-96733.firebaseio.com',
+  projectId: 'chatapp-96733',
+  storageBucket: 'chatapp-96733.appspot.com',
+  messagingSenderId: '18439054051',
+};
+
+firebase.initializeApp(config);
 
 export default class AppContainer extends Component {
   render() {
