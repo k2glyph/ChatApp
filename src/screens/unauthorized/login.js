@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
-import firebase from 'firebase';
-import LoginView from '@containers/login/loginview';
+import LoginView from '@containers/login/logincontainers';
 
 const styles = {
   container: {
@@ -24,18 +23,7 @@ const styles = {
   },
 };
 
-const config = {
-  apiKey: 'AIzaSyANwczZPwkIKh_keDD8qOZl5KpUWy1wWt4',
-  authDomain: 'chatapp-96733.firebaseapp.com',
-  databaseURL: 'https://chatapp-96733.firebaseio.com',
-  projectId: 'chatapp-96733',
-  storageBucket: 'chatapp-96733.appspot.com',
-  messagingSenderId: '18439054051',
-};
-
-firebase.initializeApp(config);
-
-export default class AppContainer extends Component {
+class Login extends Component { //eslint-disable-line
   render() {
     const { container,
       title, bottomContainer, bottomText } = styles;
@@ -47,7 +35,7 @@ export default class AppContainer extends Component {
         <LoginView />
         <View style={bottomContainer}>
           <Text style={bottomText}>
-            DeveloperBy: medineshkatwal@gmail.com
+            DeveloperBy: medineshkatwal
           </Text>
           <Text style={bottomText}>
             Using React-native, Facebook login, Firebase.
@@ -58,3 +46,4 @@ export default class AppContainer extends Component {
     );
   }
 }
+export default Login;

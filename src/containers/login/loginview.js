@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
-import FBSDK, { LoginManager, AccessToken } from 'react-native-fbsdk';
+import { LoginManager, AccessToken } from 'react-native-fbsdk';
 import firebase from 'firebase';
 
 const styles = {
@@ -21,27 +21,16 @@ const styles = {
   },
 };
 class LoginView extends Component {
-  // onLogin() {
-  //   LoginManager.logInWithReadPermissions(['public_profile', 'email']).then((result) => {
-  //     if (result.isCancelled) {
-  //       console.log('Login Cancelled');
-  //     } else {
-  //       console.log(`Login Success ${result.grantedPermissions}`);
-  //       console.log(result.data);
-  //     }
-  //   }, (error) => {
-  //     console.log(`An error occured: ${error}`);
-  //   });
-  // }
   onLogin = async () => {
     try {
-      const result = await LoginManager.logInWithReadPermissions((['public_profile', 'email']));
+      const result = await LoginManager.logInWithReadPermissions((['public_profile', 'email'])); //eslint-disable-line
       const tokenData = await AccessToken.getCurrentAccessToken();
       const token = tokenData.accessToken.toString();
       console.log(`Token After login ${token}`);
       const credential = firebase.auth.FacebookAuthProvider.credential(token);
       const user = await firebase.auth().signInWithCredential(credential);
       console.log(user);
+      this.props.loginSuccess(user);
     } catch (error) {
       // handling error
       console.log(error.message);
